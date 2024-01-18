@@ -71,7 +71,8 @@ create table actor(
     edad int not null,
     peliculaId int,
     serieId int,
-    nombreFicticio varchar(50) not null
+    nombreFicticio varchar(50) not null,
+    foto varchar(500) not null
 );
 
 
@@ -124,39 +125,38 @@ VALUES
   (4, 'Amazon Prime Video', null, 4);
 
 -- Insertar datos en la tabla 'actor'
-INSERT INTO actor (id, nombre, apellidos, edad, peliculaId, serieId, nombreFicticio)
+INSERT INTO actor (id, nombre, apellidos, edad, peliculaId, serieId, nombreFicticio, foto)
 VALUES
-  (1, 'Mike', 'Myers', 60, 1, null, 'Shrek'),
-  (2, 'Eddie', 'Murphy', 62, 1, null, 'Asno'),
-  (3, 'Cameron', 'Diaz', 51, 1, null, 'Fiona'),
-  (4, 'Anna', 'Faris', 47, 2, null, 'Cindy Campbell'),
-  (5, 'Shawn', 'Wayans', 52, 2, null, 'Ray Wilkins'),
-  (6, 'Marlon', 'Wayans', 50, 2, null, 'Shorty Meeks'),
-  (7, 'Daniel', 'Radcliffe', 33, 3, null, 'Harry Potter'),
-  (8, 'Rupert', 'Grint', 34, 3, null, 'Ron Weasley'),
-  (9, 'Emma', 'Watson', 32, 3, null, 'Hermione Granger'),
-  (10, 'Vin', 'Diesel', 55, 4, null, 'Dominic Toretto'),
-  (11, 'Dwayne', 'Johnson', 50, 4, null, 'Luke Hobbs'),
-  (12, 'Jason', 'Statham', 55, 4, null, 'Deckard Shaw'),
-  (13, 'Keanu', 'Reeves', 58, 5, null, 'John Wick'),
-  (14, 'Halle', 'Berry', 56, 5, null, 'Sofia'),
-  (15, 'Ian', 'McShane', 80, 5, null, 'Winston'),
-  (16, 'Keanu', 'Reeves', 58, null, 1, 'John Wick'),
-  (17, 'Andrew', 'Lincoln', 50, null, 1, 'Rick Grimes'),
-  (18, 'Norman', 'Reedus', 45, null, 1, 'Daryl Dixon'),
-  (19, 'Melissa', 'McBride', 59, null, 1, 'Carol Peletier'),
-  (20, 'Bryan', 'Cranston', 66, null, 2, 'Walter White'),
-  (21, 'Aaron', 'Paul', 43, null, 2, 'Jesse Pinkman'),
-  (22, 'Anna', 'Gunn', 54, null, 2, 'Skyler White'),
-  (23, 'Ricardo', 'Arroyo', 56, null, 3, 'Amador Rivas'),
-  (24, 'Paz', 'Padilla', 55, null, 3, 'Chusa'),
-  (25, 'José Luis', 'Gil', 67, null, 3, 'Enrique Pastor'),
-  (26, 'José', 'Coronado', 66, null, 4, 'Tirso Abantos'),
-  (27, 'Luis', 'Zahera', 57, null, 4, 'Ezequiel Fandiño'),
-  (28, 'Felipe', 'Londoño', 29, null, 4, 'Nelson Gutiérrez'),
-  (29, 'Wentworth', 'Miller', 52, null, 5, 'Michael Scofield'),
-  (30, 'Dominic', 'Purcell', 54, null, 5, 'Lincoln Burrows'),
-  (31, 'Sarah', 'Wayne', 47, null, 5, 'Sara Tancredi');
+  (1, 'Mike', 'Myers', 60, 1, null, 'Shrek', 'https://cdn.semana.es/wp-content/uploads/2021/05/mike-myers.jpg' ),
+  (2, 'Eddie', 'Murphy', 62, 1, null, 'Asno', 'https://static.wikia.nocookie.net/doblaje/images/1/1a/EddieMurphy.jpg/revision/latest?cb=20191103185619&path-prefix=es'),
+  (3, 'Cameron', 'Diaz', 51, 1, null, 'Fiona','https://media.revistagq.com/photos/5ca5f469d71dd925d8957a38/1:1/w_900,h_900,c_limit/cameron_diaz_2618.jpg'),
+  (4, 'Anna', 'Faris', 47, 2, null, 'Cindy Campbell','https://people.com/thmb/jHN9IEWqzA3RHujVPvhQRrQ5BzU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(689x319:691x321)/anna-faris-overboard-premiere-110122-438934bd979d4a91b641eb2e9c9a50be.jpg'),
+  (5, 'Shawn', 'Wayans', 52, 2, null, 'Ray Wilkins', 'https://www.wane.com/wp-content/uploads/sites/21/2023/03/Shawn-Wayans.jpg?w=1280'),
+  (6, 'Marlon', 'Wayans', 50, 2, null, 'Shorty Meeks','https://media-cldnry.s-nbcnews.com/image/upload/rockcms/2023-11/marlon-wayans-lc-231113-3c6f4a.jpg'),
+  (7, 'Daniel', 'Radcliffe', 33, 3, null, 'Harry Potter','https://m.media-amazon.com/images/M/MV5BZmE0NzNiNzQtYTVlYS00MjljLWE4MTgtYzYxNjU2NjZkM2M4XkEyXkFqcGdeQXVyNjY5NDgzNjQ@._V1_.jpg'),
+  (8, 'Rupert', 'Grint', 34, 3, null, 'Ron Weasley','https://media.revistagq.com/photos/63d7977084d3d5687a19067b/1:1/w_2504,h_2504,c_limit/GettyImages-1188778598.jpg'),
+  (9, 'Emma', 'Watson', 32, 3, null, 'Hermione Granger','https://media.cnn.com/api/v1/images/stellar/prod/230417120259-emma-watson-birthday-file-091522.jpg?c=original'),
+  (10, 'Vin', 'Diesel', 55, 4, null, 'Dominic Toretto','https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Vin_Diesel_2013_SDCC_%28cropped%29.jpg/1200px-Vin_Diesel_2013_SDCC_%28cropped%29.jpg'),
+  (11, 'Dwayne', 'Johnson', 50, 4, null, 'Luke Hobbs','https://i.ytimg.com/vi/Mw3jK9YwOxk/maxresdefault.jpg'),
+  (12, 'Jason', 'Statham', 55, 4, null, 'Deckard Shaw','https://hips.hearstapps.com/hmg-prod/images/jason-statham-attends-the-fast-furious-hobbs-shaw-special-news-photo-1700212301.jpg?crop=0.694xw:1.00xh;0.209xw,0&resize=1200:*'),
+  (13, 'Keanu', 'Reeves', 58, 5, null, 'John Wick','https://m.media-amazon.com/images/M/MV5BNGJmMWEzOGQtMWZkNS00MGNiLTk5NGEtYzg1YzAyZTgzZTZmXkEyXkFqcGdeQXVyMTE1MTYxNDAw._V1_.jpg'),
+  (14, 'Halle', 'Berry', 56, 5, null, 'Sofia','https://static.wikia.nocookie.net/doblaje/images/6/68/Halle_Berry_2019.jpg/revision/latest?cb=20190503220115&path-prefix=es'),
+  (15, 'Ian', 'McShane', 80, 5, null, 'Winston','https://static.independent.co.uk/s3fs-public/thumbnails/image/2019/03/07/09/ian-mcshane.jpg?quality=75&width=1200&auto=webp'),
+  (17, 'Andrew', 'Lincoln', 50, null, 1, 'Rick Grimes','https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/78719_v9_bb.jpg'),
+  (18, 'Norman', 'Reedus', 45, null, 1, 'Daryl Dixon','https://people.com/thmb/UnflRdOaObMhRB0_wWZQHBAgjyc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(719x349:721x351)/norman-reedus-84569121b8ad439eb52a89f1217c2621.jpg'),
+  (19, 'Melissa', 'McBride', 59, null, 1, 'Carol Peletier','https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/397746_v9_bc.jpg'),
+  (20, 'Bryan', 'Cranston', 66, null, 2, 'Walter White','https://hips.hearstapps.com/hmg-prod/images/rs-18374-121813-ww-1800-1387390916.jpg?crop=0.752xw:1.00xh;0,0&resize=2048:*'),
+  (21, 'Aaron', 'Paul', 43, null, 2, 'Jesse Pinkman','https://media.vanityfair.com/photos/5c8e9033b515803ea55ee6c8/4:3/w_1336,h_1002,c_limit/aaron-paul-breaking-bad-movie.jpg'),
+  (22, 'Anna', 'Gunn', 54, null, 2, 'Skyler White','https://www.usatoday.com/gcdn/-mm-/4df1855554f7c0890bf388e619378c062ae8d832/c=0-55-3900-2254/local/-/media/USATODAY/None/2014/10/02/1412274799000-Gracepoint-Anna-Gunn.jpg'),
+  (23, 'Ricardo', 'Arroyo', 56, null, 3, 'Amador Rivas','https://es.web.img2.acsta.net/r_1280_720/pictures/20/11/17/12/50/4713969.jpg'),
+  (24, 'Paz', 'Padilla', 55, null, 3, 'Chusa','https://s1.ppllstatics.com/lasprovincias/www/multimedia/202208/10/media/cortadas/Captura%20de%20pantalla%20(5)-RaARRT0RNTksmTBUEpfaU5N-1248x770@Las%20Provincias.png'),
+  (25, 'José Luis', 'Gil', 67, null, 3, 'Enrique Pastor','https://okdiario.com/img/2023/03/18/jose-luis-gil-1.jpg'),
+  (26, 'José', 'Coronado', 66, null, 4, 'Tirso Abantos','https://media.diariouno.com.ar/p/c9511126be7e46cbce9172eca0e0a642/adjuntos/298/imagenes/009/281/0009281664/1200x0/smart/vivir-permiso-3jpg.jpg'),
+  (27, 'Luis', 'Zahera', 57, null, 4, 'Ezequiel Fandiño','https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2022/11/14/16684180745977.jpg'),
+  (28, 'Felipe', 'Londoño', 29, null, 4, 'Nelson Gutiérrez','https://media.e-talenta.eu/foto/1584564.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjZmV0IiwiYXVkIjoiY2ZldCIsImlhdCI6MTY0MjM0MDQ0NiwiZXhwIjoxNjQyMzQ3NjQ2LCJkYXRhIjp7ImNkbl9zY29wZSI6ImZvdG8iLCJjZG5faWQiOjE1ODQ1NjQsInVzZXJfcHJvZmlsZUlkIjowLCJub0luZGV4IjpmYWxzZX19.hA-HBGW4sTeSMNNYFSQbgur-fp7FA8zD3BiRI9riECY'),
+  (29, 'Wentworth', 'Miller', 52, null, 5, 'Michael Scofield','https://static.wikia.nocookie.net/arrow/images/1/1d/Wentworth_Miller.png/revision/latest?cb=20141129190548&path-prefix=es'),
+  (30, 'Dominic', 'Purcell', 54, null, 5, 'Lincoln Burrows','https://facts.net/wp-content/uploads/2023/07/34-facts-about-dominic-purcell-1690163477.jpg'),
+  (31, 'Sarah', 'Wayne', 47, null, 5, 'Sara Tancredi','https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/261190_v9_bb.jpg');
 
 -- Para la tabla 'peliculas'
 ALTER TABLE peliculas
