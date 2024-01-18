@@ -1,6 +1,4 @@
-drop database if exists streamvideo;
-create database streamvideo;
-use streamvideo;
+
 
 create table users(
 	id int auto_increment primary key,
