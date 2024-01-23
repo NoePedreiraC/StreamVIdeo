@@ -1,126 +1,208 @@
+drop database if exists streamvideo;
+create database streamvideo;
+use streamvideo;
 
-
-create table users(
-	id int auto_increment primary key,
-    nombre varchar(50) not null,
-    apellidos varchar(100) not null,
-    contraseña varchar(200) not null,
-    telefono char(9),
-    email varchar(100) not null,
-    favorito int not null
+-- Crear la tabla 'users'
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    apellidos VARCHAR(100) NOT NULL,
+    contraseña VARCHAR(200) NOT NULL,
+    telefono CHAR(9),
+    email VARCHAR(100) NOT NULL,
+    favoritoId INT NOT NULL,
+    comentariopeliculaId INT NOT NULL,
+    comentarioserieId INT NOT NULL
 );
 
-create table peliculas(
-	id int auto_increment primary key,
-    nombre varchar(50) not null,
-    genero varchar(200) not null,
-    año year not null,
-    plataformaId int not null,
-    descripcion varchar(300) not null,
-    urlImagen varchar(500) not null,
-    actorId int not null,
-    duracion int not null,
-    valoracion int not null,
-    laTienesEnFavoritos boolean not null,
-    comentarios varchar(200) not null
+-- Crear la tabla 'peliculas'
+CREATE TABLE peliculas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    genero VARCHAR(200) NOT NULL,
+    año YEAR NOT NULL,
+    plataformaId INT NOT NULL,
+    descripcion VARCHAR(300) NOT NULL,
+    urlImagen VARCHAR(5500) NOT NULL,
+    actorId INT NOT NULL,
+    duracion INT NOT NULL,
+    valoracion INT NOT NULL,
+    comentarioId INT NOT NULL
 );
 
-create table series(
-	id int auto_increment primary key,
-    nombre varchar(50) not null,
-    genero varchar(30) not null,
-    año year not null,
-    numTemporadas int not null,
-    plataformaId int not null,
-    descripcion varchar(300) not null,
-    urlImagen varchar(200) not null,
-    actorId int not null,
-    valoracion int not null,
-    comentarios varchar(200) not null
+-- Crear la tabla 'series'
+CREATE TABLE series (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    genero VARCHAR(30) NOT NULL,
+    año YEAR NOT NULL,
+    numTemporadas INT NOT NULL,
+    plataformaId INT NOT NULL,
+    descripcion VARCHAR(300) NOT NULL,
+    urlImagen VARCHAR(2000) NOT NULL,
+    actorId INT NOT NULL,
+    valoracion INT NOT NULL,
+    comentarioId INT NOT NULL
 );
 
-create table favoritos(
-	id int auto_increment primary key,
-    peliculaId int,
-    serieId int,
-    userId int not null,
-    esFavorito boolean not null
+-- Crear la tabla 'comentariosseries'
+CREATE TABLE comentariosseries (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    comentario VARCHAR(800),
+    serieId INT,
+    userId INT NOT NULL
 );
 
-create table verLuego(
-	id int auto_increment primary key,
-    serieId int,
-    peliculaId int,
-    userId int not null,
-    vtarde boolean not null
+-- Crear la tabla 'comentariospeliculas'
+CREATE TABLE comentariospeliculas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    comentario VARCHAR(800),
+    peliculaId INT,
+    userId INT NOT NULL
 );
 
-create table plataformas(
-	id int auto_increment primary key,
-    nombre varchar(100) not null,
-    peliculaId int,
-    serieId int
+-- Crear la tabla 'favoritos'
+CREATE TABLE favoritos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    peliculaId INT,
+    serieId INT,
+    userId INT NOT NULL,
+    esFavorito BOOLEAN NOT NULL
 );
 
-create table actor(
-	id int auto_increment primary key,
-    nombre varchar(100) not null,
-    apellidos varchar(100) not null,
-    edad int not null,
-    peliculaId int,
-    serieId int,
-    nombreFicticio varchar(50) not null,
-    foto varchar(500) not null
+-- Crear la tabla 'plataformas'
+CREATE TABLE plataformas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    peliculaId INT,
+    serieId INT
 );
 
+-- Crear la tabla 'actor'
+CREATE TABLE actor (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    apellidos VARCHAR(100) NOT NULL,
+    edad INT NOT NULL,
+    peliculaId INT,
+    serieId INT,
+    nombreFicticio VARCHAR(50) NOT NULL,
+    foto VARCHAR(500) NOT NULL
+);
 
 
 -- Insertar datos en la tabla 'users'
-INSERT INTO users (nombre, apellidos, contraseña, telefono, email, favorito)
-VALUES
-  ('Elías', 'Maira', '1234', '604020204', 'eliasmairamanteiga@gmail.com', 1),
-  ('Rubén', 'Varela', '12345', '634597141', 'rubenvarelafigueroa@gmail.com', 2),
-  ('Alejandro', 'Rodriguez', 'pepe de pura', '678546791', 'alexdf@gmail.com', 3),
-  ('Noe', 'Pedreira', 'A.', '123456789', 'noepc@gmail.com', 4),
-  ('Antonio', 'Seoane', 'cualquiera', '673126795', 'antoniomc@gmail.com', 5);
+INSERT INTO users (nombre, apellidos, contraseña, telefono, email, favoritoId, comentariopeliculaId, comentarioserieId)
+VALUES 
+('John', 'Doe', 'Contraseña123', '123456789', 'john.doe@email.com', 1, 1, 1),
+('Jane', 'Smith', 'OtraContraseña', '987654321', 'jane.smith@email.com', 2, 2, 2),
+('Michael', 'Johnson', 'Pass123', '555666777', 'michael.johnson@email.com', 3, 3, 2),
+('Emily', 'Williams', 'SecurePwd', '111222333', 'emily.williams@email.com', 4, 4, 4),
+('David', 'Brown', 'SecretPass', '999888777', 'david.brown@email.com', 5, 5, 5),
+('Olivia', 'Davis', 'Hidden123', '333444555', 'olivia.davis@email.com', 6, 6, 6),
+('William', 'Martinez', 'TopSecret', '777888999', 'william.martinez@email.com', 7, 7, 7),
+('Sophia', 'Anderson', 'Confidential', '444555666', 'sophia.anderson@email.com', 8, 8, 8),
+('James', 'Taylor', 'Secure123', '666777888', 'james.taylor@email.com', 9, 9, 9),
+('Emma', 'Hernandez', 'SafePwd', '888999000', 'emma.hernandez@email.com', 10, 10, 10);
 
--- Insertar datos en la tabla 'peliculas'
-INSERT INTO peliculas (nombre, genero, año, plataformaId, descripcion, urlImagen, actorId, duracion, valoracion, laTienesEnFavoritos, comentarios)
-VALUES
-  ('Shrek', 'Fantasía', 2001, 1, 'Es una película animada que sigue las aventuras de Shrek...', 'https://imagenes.20minutos.es/files/image_640_auto/uploads/imagenes/2021/05/19/shrek-2001-3.jpeg', 1, 90, 9, false, ''),
-  ('Scary Movie 1', 'Terror', 2000, 3, 'Es una comedia paródica que satiriza películas de terror populares...', 'https://img19.tokyvideo.com/videos/297/297832/previews/previews_0012_custom_1690245508.2906.jpg', 4, 88, 6, false, ''),
-  ('Harry Potter Principe Mestizo', 'Ficción', 2009, 2, 'Harry Potter y el Príncipe Mestizo sigue al joven mago Harry Potter en su sexto año en Hogwarts...', 'https://i.blogs.es/c32fe2/harrypotter/650_1200.webp', 7, 153, 7, false, ''),
-  ('Fast & Furious 8', 'Acción', 2001, 4, 'Dominic Toretto, quien traiciona a su equipo bajo la influencia de una mujer misteriosa...', 'https://estaticos-cdn.prensaiberica.es/clip/f279cb2d-1d87-430e-86ca-325fede31fe2_16-9-aspect-ratio_default_0.jpg', 10, 136, 6.5, false, ''),
-  ('John Wick 3', 'Acción', 2019, 1, 'John Wick: Chapter 3 - Parabellum continúa la historia del exasesino John Wick...', 'https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/F3D3A70A0ADEAF78D4713869F9492CFDF2A18687862E45AD4B388246E474B845/scale?width=1200&aspectRatio=1.78&format=jpeg', 13, 130, 9, false, '');
 
--- Insertar datos en la tabla 'series'
-INSERT INTO series (nombre, genero, año, numTemporadas, plataformaId, descripcion, urlImagen, actorId, valoracion, comentarios)
-VALUES
-  ('The Walking Dead', 'Zombies', 2019, 11, 1, 'Es una serie de televisión que sigue a un grupo de supervivientes en un mundo postapocalíptico...', 'https://i.blogs.es/2e3339/comparacion-poster-walking-dead-comic-tv/1366_2000.png', 16, 7, ''),
-  ('Breaking Bad', 'Drama', 2008, 5, 1, 'Es una aclamada serie de televisión que sigue la transformación de Walter White...', 'https://hipermediaciones.files.wordpress.com/2013/10/21225_breaking_bad.jpg', 19, 10, ''),
-  ('La que se avecina', 'Comedia', 2007, 14, 4, 'Es una comedia española que narra las peripecias y conflictos de los variados residentes de una comunidad de vecinos...', 'https://phantom-marca.unidadeditorial.es/e7ab3a55810d1b2bf47182419d4ee380/resize/1200/f/webp/assets/multimedia/imagenes/2022/06/15/16553145982009.jpg', 22, 8, ''),
-  ('Entrevias', 'Drama', 2022, 3, 1, 'Es una serie thriller que sigue la historia de Tirso Abantos, un hombre de principio y exmilitar...', 'https://album.mediaset.es/cimg/2023/10/05/entreviasthumbnailt3_1f06.jpg', 25, 8.5, ''),
-  ('Prision Break', 'Ficción criminal', 2005, 5, 3, 'Es una serie de televisión que sigue a Michael Scofield, quien ingeniosamente se deja encarcelar para liberar a su hermano...', 'https://imagenes.20minutos.es/files/image_1920_1080/uploads/imagenes/2020/09/03/prison-break-2005-2017-7.jpeg', 29, 7.5, '');
-
+-- Inserciones para la tabla 'peliculas'
+INSERT INTO peliculas (nombre, genero, año, plataformaId, descripcion, urlImagen, actorId, duracion, valoracion, comentarioId)
+VALUES 
+('Inception', 'Ciencia Ficción', 2010, 1, 'Un thriller psicológico que desafía la mente. Dom Cobb se sumerge en los sueños para robar secretos empresariales.', 'https://4.bp.blogspot.com/_dAGq_7k2IB8/S_cWJtnAbjI/AAAAAAAABa8/kKVq2-TF-Os/s1600/Inception.jpg', 1, 148, 5, 1),
+('The Shawshank Redemption', 'Drama', 1994, 2, 'La esperanza es algo bueno, quizás lo mejor de las cosas. La historia de Andy Dufresne en Shawshank.', 'https://pics.filmaffinity.com/Cadena_perpetua-576140557-mmed.jpg', 2, 142, 5, 2),
+('The Dark Knight', 'Acción', 2008, 1, 'El reinado del caos del Joker. Batman enfrenta al criminal que busca sumir a Gotham en el caos.', 'https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_.jpg', 3, 152, 5, 3),
+('Pulp Fiction', 'Crimen', 1994, 3, 'Un viaje salvaje por Los Ángeles. Las vidas de varios personajes se entrelazan en historias no lineales.', 'https://m.media-amazon.com/images/I/71QMaptCTdL._AC_UF894,1000_QL80_.jpg', 4, 154, 4, 4),
+('The Godfather', 'Crimen', 1972, 2, 'Una oferta que no puedes rechazar. La historia de la familia Corleone en el mundo del crimen organizado.', 'https://m.media-amazon.com/images/I/81fc+fWtALL._AC_UF894,1000_QL80_.jpg', 5, 175, 5, 5),
+('The Matrix', 'Ciencia Ficción', 1999, 1, 'La realidad es cosa del pasado. Neo descubre la verdad detrás del mundo aparentemente real.', 'https://decine21.com/images/noticias/0001/matrix-4-resumen-saga.jpg', 6, 136, 4, 6),
+('Forrest Gump', 'Drama', 1994, 3, 'La vida es como una caja de chocolates. Forrest Gump vive una vida extraordinaria y se cruza con eventos históricos.', 'https://m.media-amazon.com/images/S/pv-target-images/2d0c9e38968936e6711c7fb2bc7895b82d8bb9178b5a854e14dffa4b17b88487.jpg', 7, 142, 4, 7),
+('Fight Club', 'Drama', 1999, 3, 'La primera regla del Fight Club es... no hablar del Fight Club. Un viaje a la anarquía y la liberación personal.', 'https://m.media-amazon.com/images/I/71TdVILcp9L._AC_UF894,1000_QL80_.jpg', 8, 139, 5, 8),
+('The Lord of the Rings: The Fellowship of the Ring', 'Fantasía', 2001, 2, 'Un anillo para gobernarlos a todos. La Comunidad del Anillo inicia una épica búsqueda en la Tierra Media.', 'https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p28828_p_v10_am.jpg', 9, 178, 5, 9),
+('The Silence of the Lambs', 'Thriller', 1991, 3, 'Hola, Clarice. La agente del FBI, Clarice Starling, busca la ayuda del Dr. Hannibal Lecter para atrapar a un asesino en serie.', 'https://m.media-amazon.com/images/I/7107+d5darL._AC_UF894,1000_QL80_.jpg', 10, 118, 5, 10);
+-- Inserciones para la tabla 'series'
+INSERT INTO series (nombre, genero, año, numTemporadas, plataformaId, descripcion, urlImagen, actorId, valoracion, comentarioId)
+VALUES 
+('Breaking Bad', 'Crimen', 2008, 5, 1, 'Desde profesor de química hasta rey de la metanfetamina. La transformación de Walter White en el mundo del crimen.', 'https://pics.filmaffinity.com/breaking_bad-504442815-mmed.jpg', 1, 5, 1),
+('Stranger Things', 'Ciencia Ficción', 2016, 4, 2, 'Extraños sucesos en Hawkins. Un grupo de niños enfrenta a criaturas sobrenaturales y secretos gubernamentales.', 'https://pics.filmaffinity.com/Stranger_Things_Serie_de_TV-875025085-large.jpg', 2, 4, 2),
+('The Crown', 'Drama', 2016, 4, 3, 'La historia de la familia real británica. Desde la coronación de la Reina Isabel II hasta los eventos más recientes.', 'https://pics.filmaffinity.com/the_crown-838357032-mmed.jpg', 3, 4, 3),
+('Game of Thrones', 'Fantasía', 2011, 8, 4, 'Una Canción de Hielo y Fuego. Intrigas políticas, traiciones y batallas en la lucha por el Trono de Hierro.', 'https://m.media-amazon.com/images/I/91eXHA-8K9L._AC_UF894,1000_QL80_.jpg', 4, 5, 4),
+('Friends', 'Comedia', 1994, 10, 5, 'El que todos se hicieron amigos. Las peripecias y relaciones de seis amigos en Nueva York.', 'https://m.media-amazon.com/images/M/MV5BNDVkYjU0MzctMWRmZi00NTkxLTgwZWEtOWVhYjZlYjllYmU4XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_FMjpg_UX1000_.jpg', 5, 4, 5),
+('The Office', 'Comedia', 2005, 9, 6, 'Locuras en Dunder Mifflin Paper Company. La vida cotidiana en una oficina llena de personajes peculiares.', 'https://upload.wikimedia.org/wikipedia/en/5/58/TheOffice_S7_DVD.jpg', 6, 4, 6),
+('Black Mirror', 'Ciencia Ficción', 2011, 5, 7, 'El lado oscuro de la tecnología. Episodios independientes exploran futuros distópicos y dilemas éticos.', 'https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2017/06/black-mirror-portada.jpg?tf=1200x', 7, 5, 7),
+('Westworld', 'Ciencia Ficción', 2016, 3, 8, 'Donde nada puede salir mal... sale mal. Un parque temático de robots con conciencia propia.', 'https://images.ecestaticos.com/haUF0Cfi4N8Ex5ya5ZYEqiNQTTM=/146x0:875x409/1600x900/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F3b2%2Ff83%2F8f7%2F3b2f838f792aa61c3053c428258b10e5.jpg', 8, 4, 8),
+('Narcos', 'Crimen', 2015, 3, 9, 'El auge y caída de los señores de la droga. Basada en hechos reales, la historia de los cárteles de Colombia.', 'https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_4/H2x1_NSwitch_NarcosRiseOfTheCartels_image1600w.jpg', 9, 4, 9),
+('The Mandalorian', 'Acción', 2019, 2, 10, 'Cazarrecompensas en el universo de Star Wars. Aventuras de un pistolero solitario en la galaxia muy, muy lejana.', 'https://static.wikia.nocookie.net/esstarwars/images/7/71/TheArtofTheMandalorian%28Season_One%29ES.jpg/revision/latest?cb=20210630040243', 10, 5, 10);
 -- Insertar datos en la tabla 'favoritos'
-INSERT INTO favoritos (id, userId, esFavorito, peliculaId, serieId)
-VALUES
-  (1, 3, true, 4, null),
-  (2, 5, true, null, 3);
+-- Inserciones para la tabla 'comentariosseries'
+INSERT INTO comentariosseries (comentario, serieId, userId)
+VALUES 
+('Breaking Bad es una obra maestra!', 1, 1),
+('Stranger Things es tan nostálgica', 2, 2),
+('The Crown ofrece una experiencia real', 3, 3),
+('Game of Thrones es épica!', 4, 4),
+('Friends siempre me hace reír', 5, 5),
+('The Office es un clásico', 6, 6),
+('Black Mirror es alucinante', 7, 7),
+('Westworld - donde la realidad se difumina', 8, 8),
+('Narcos cuenta una historia envolvente', 9, 9),
+('The Mandalorian es una joya de Star Wars', 10, 10);
   
-  -- Insertar datos en la tabla 'verLuego'
-INSERT INTO verLuego (id, serieId, peliculaId, userId, vtarde)
-VALUES
-  (1, null, 1, 2, true),
-  (2, 2, null, 4, true);
+-- Inserciones para la tabla 'comentariospeliculas'
+INSERT INTO comentariospeliculas (comentario, peliculaId, userId)
+VALUES 
+('Inception me voló la cabeza!', 1, 1),
+('The Shawshank Redemption es imprescindible', 2, 2),
+('The Dark Knight - Heath Ledger fue increíble', 3, 3),
+('Pulp Fiction - brillantez de Quentin Tarantino', 4, 4),
+('The Godfather - una obra maestra cinematográfica', 5, 5),
+('The Matrix - un viaje a lo desconocido', 6, 6),
+('Forrest Gump - un relato conmovedor', 7, 7),
+('Fight Club - impactante e intensa', 8, 8),
+('LOTR: Fellowship - fantasía épica', 9, 9),
+('Silence of the Lambs - thriller escalofriante', 10, 10);
 
 -- Insertar datos en la tabla 'plataformas'
-INSERT INTO plataformas (id, nombre, peliculaId, serieId)
-VALUES
-  (1, 'Netflix', null, 1),
-  (2, 'HBO Max', null, 3),
-  (3, 'Disney+', null, 5),
-  (4, 'Amazon Prime Video', null, 4);
+-- Inserciones para la tabla 'favoritos'
+INSERT INTO favoritos (peliculaId, serieId, userId, esFavorito)
+VALUES 
+(1, 1, 1, true),
+(2, 2, 2, true),
+(3, 3, 3, true),
+(4, 4, 4, true),
+(5, 5, 5, true),
+(6, 6, 6, true),
+(7, 7, 7, true),
+(8, 8, 8, true),
+(9, 9, 9, true),
+(10, 10, 10, true);
+/*
+-- Inserciones para la tabla 'verLuego'
+INSERT INTO verLuego (serieId, peliculaId, userId, vtarde)
+VALUES 
+(1, 2, 1, false),
+(2, 1, 2, true),
+(3, 4, 3, false),
+(4, 3, 4, true),
+(5, 6, 5, false),
+(6, 5, 6, true),
+(7, 8, 7, false),
+(8, 7, 8, true),
+(9, 10, 9, false),
+(10, 9, 10, true);
+*/
+-- Inserciones para la tabla 'plataformas'
+INSERT INTO plataformas (nombre, peliculaId, serieId)
+VALUES 
+('Netflix', 1, 2),
+('Amazon Prime Video', 2, 1),
+('Hulu', 3, 3),
+('HBO', 4, 4),
+('Disney+', 5, 5),
+('HBO', 6, 6),
+('Netflix', 7, 7),
+('Hulu', 8, 8),
+('Amazon Prime Video', 9, 9),
+('Disney+', 10, 10);
 
 -- Insertar datos en la tabla 'actor'
 INSERT INTO actor (id, nombre, apellidos, edad, peliculaId, serieId, nombreFicticio, foto)
@@ -156,41 +238,47 @@ VALUES
   (30, 'Dominic', 'Purcell', 54, null, 5, 'Lincoln Burrows','https://facts.net/wp-content/uploads/2023/07/34-facts-about-dominic-purcell-1690163477.jpg'),
   (31, 'Sarah', 'Wayne', 47, null, 5, 'Sara Tancredi','https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/261190_v9_bb.jpg');
 
--- Para la tabla 'peliculas'
-ALTER TABLE peliculas
-ADD CONSTRAINT fk_dos FOREIGN KEY (plataformaId) REFERENCES plataformas(id),
-ADD CONSTRAINT fk_tres FOREIGN KEY (actorId) REFERENCES actor(id);
-
--- Para la tabla 'series'
-ALTER TABLE series
-ADD CONSTRAINT fk_cuatro FOREIGN KEY (plataformaId) REFERENCES plataformas(id),
-ADD CONSTRAINT fk_cinco FOREIGN KEY (actorId) REFERENCES actor(id);
-
--- Para la tabla 'favoritos'
-ALTER TABLE favoritos
-ADD CONSTRAINT fk_seis FOREIGN KEY (serieId) REFERENCES series(id),
-ADD CONSTRAINT fk_siete FOREIGN KEY (peliculaId) REFERENCES peliculas(id),
-ADD CONSTRAINT fk_ocho FOREIGN KEY (userId) REFERENCES users(id);
-
--- Para la tabla 'verLuego'
-ALTER TABLE verLuego
-ADD CONSTRAINT fk_nueve FOREIGN KEY (serieId) REFERENCES series(id),
-ADD CONSTRAINT fk_diez FOREIGN KEY (peliculaId) REFERENCES peliculas(id),
-ADD CONSTRAINT fk_once FOREIGN KEY (userId) REFERENCES users(id);
-
--- Para la tabla 'plataformas'
-ALTER TABLE plataformas
-ADD CONSTRAINT fk_doce FOREIGN KEY (serieId) REFERENCES series(id),
-ADD CONSTRAINT fk_trece FOREIGN KEY (peliculaId) REFERENCES peliculas(id);
-
--- Para la tabla 'actor'
-ALTER TABLE actor
-ADD CONSTRAINT fk_catorce FOREIGN KEY (serieId) REFERENCES series(id),
-ADD CONSTRAINT fk_quince FOREIGN KEY (peliculaId) REFERENCES peliculas(id);
+-- Agregar claves foráneas
 
 
-	
+ALTER TABLE comentariosseries ADD FOREIGN KEY (serieId) REFERENCES series(id);
+ALTER TABLE comentariosseries ADD FOREIGN KEY (userId) REFERENCES users(id);
 
+
+ALTER TABLE comentariospeliculas ADD FOREIGN KEY (peliculaId) REFERENCES peliculas(id);
+ALTER TABLE comentariospeliculas ADD FOREIGN KEY (userId) REFERENCES users(id);
+
+
+ALTER TABLE favoritos ADD FOREIGN KEY (peliculaId) REFERENCES peliculas(id);
+ALTER TABLE favoritos ADD FOREIGN KEY (serieId) REFERENCES series(id);
+ALTER TABLE favoritos ADD FOREIGN KEY (userId) REFERENCES users(id);
+
+
+ALTER TABLE plataformas ADD FOREIGN KEY (peliculaId) REFERENCES peliculas(id);
+ALTER TABLE plataformas ADD FOREIGN KEY (serieId) REFERENCES series(id);
+
+
+ALTER TABLE actor ADD FOREIGN KEY (peliculaId) REFERENCES peliculas(id);
+ALTER TABLE actor ADD FOREIGN KEY (serieId) REFERENCES series(id);
+
+ALTER TABLE users ADD CONSTRAINT FK_favoritoId FOREIGN KEY (favoritoId) REFERENCES favoritos(id);
+ALTER TABLE users ADD CONSTRAINT FK_comentariopeliculaId FOREIGN KEY (comentariopeliculaId) REFERENCES comentariospeliculas(id);
+ALTER TABLE users ADD CONSTRAINT FK_comentarioserieId FOREIGN KEY (comentarioserieId) REFERENCES comentariosseries(id);
+
+-- Claves foráneas para la tabla 'peliculas'
+
+ALTER TABLE peliculas ADD CONSTRAINT FK_plataformaId FOREIGN KEY (plataformaId) REFERENCES plataformas(id);
+ALTER TABLE peliculas ADD CONSTRAINT FK_actorId_peliculas FOREIGN KEY (actorId) REFERENCES actor(id);
+ALTER TABLE peliculas ADD CONSTRAINT FK_comentarioId_peliculas FOREIGN KEY (comentarioId) REFERENCES comentariospeliculas(id);
+
+
+
+
+-- Claves foráneas para la tabla 'series'
+
+ALTER TABLE series ADD CONSTRAINT FK_plataformaId_series FOREIGN KEY (plataformaId) REFERENCES plataformas(id);
+ALTER TABLE series ADD CONSTRAINT FK_actorId_series FOREIGN KEY (actorId) REFERENCES actor(id);
+ALTER TABLE series ADD CONSTRAINT FK_comentarioId_series FOREIGN KEY (comentarioId) REFERENCES comentariosseries(id);
 
 
 
